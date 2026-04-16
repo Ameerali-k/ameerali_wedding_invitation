@@ -16,7 +16,7 @@ export default function Dashboard() {
         .from('rsvp')
         .select('count')
         .eq('status', 'attending');
-      
+
       if (attendeesData) {
         const sum = attendeesData.reduce((acc, row) => acc + (row.count || 0), 0);
         setTotalCount(sum);
@@ -27,7 +27,7 @@ export default function Dashboard() {
         .from('rsvp')
         .select('message')
         .eq('status', 'not_attending');
-      
+
       if (msgsData) {
         setMessages(msgsData.filter(m => m.message));
       }
@@ -37,8 +37,8 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', background: '#ffffff', padding: '3rem 5%', fontFamily: 'var(--font-sans)', color: '#333' }}>
-      
+    <div style={{ minHeight: '100vh', width: '100%', background: '#ffffff', padding: '3rem 5%', fontFamily: 'var(--font-sans)', color: '#333' }}>
+
       {/* Title */}
       <h1 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.5rem', fontWeight: 800, color: '#4a4a4a', letterSpacing: '0.02em', marginBottom: '3rem' }}>
         DASHBOARD
@@ -46,7 +46,7 @@ export default function Dashboard() {
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
-        <button 
+        <button
           onClick={() => setActiveTab('attendees')}
           style={{
             background: activeTab === 'attendees' ? '#eaf4eb' : 'transparent',
@@ -63,7 +63,7 @@ export default function Dashboard() {
         >
           TOTAL ATTENDEES
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('messages')}
           style={{
             background: activeTab === 'messages' ? '#eaf4eb' : 'transparent',
@@ -101,7 +101,7 @@ export default function Dashboard() {
         ) : activeTab === 'attendees' ? (
           <>
             <div style={{ fontFamily: 'var(--font-delius), "Delius Swash Caps", cursive', fontSize: '2rem', color: '#111', marginBottom: '1rem' }}>
-              Total member
+              Total members
             </div>
             <div style={{ fontFamily: 'var(--font-cigra), serif', fontSize: '6rem', color: '#111', lineHeight: '1' }}>
               {totalCount}
@@ -130,7 +130,7 @@ export default function Dashboard() {
           </div>
         )}
       </div>
-      
+
     </div>
   );
 }

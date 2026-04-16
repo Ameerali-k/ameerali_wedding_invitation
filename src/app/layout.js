@@ -34,6 +34,10 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Delius+Swash+Caps&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
       </head>
       <body className={`${cormorant.variable} ${cinzel.variable} ${cigra.variable}`}>
+        {/* Outer Background Flowers */}
+        <img src="/images/flower.svg" alt="" className="bg-flower bg-flower-tl" />
+        <img src="/images/flower.svg" alt="" className="bg-flower bg-flower-br" />
+        
         {children}
       </body>
     </html>

@@ -69,7 +69,7 @@ function playPopSound() {
     osc.type = 'sine';
     osc.frequency.setValueAtTime(800, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(0.5, ctx.currentTime);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
     osc.start(ctx.currentTime);
     osc.stop(ctx.currentTime + 0.1);
@@ -105,15 +105,29 @@ function SuccessScreen({ onBack, onSubmit }) {
 
     // single quick burst of confetti
     confetti({
-      particleCount: 50,
+      particleCount: 80,
       angle: 90,
-      spread: 360,
-      startVelocity: 35,
-      origin: { x: 0.5, y: 0.5 },
+      spread: 70,
+      startVelocity: 45,
+      origin: { x: 0.5, y: 0.4 },
       colors: ['#4a7c5a', '#7db37d', '#f2f2ec', '#d1495b', '#e07a5f', '#f9c5d1'],
       shapes: heartShape ? ['circle', 'square', heartShape] : ['circle', 'square'],
       scalar: 1.2
     });
+
+    // second smaller burst after delay (no sound, only hearts)
+    setTimeout(() => {
+      confetti({
+        particleCount: 30,
+        angle: 90,
+        spread: 50,
+        startVelocity: 30,
+        origin: { x: 0.5, y: 0.4 },
+        colors: ['#d1495b', '#e07a5f', '#f9c5d1'],
+        shapes: heartShape ? [heartShape] : ['circle'],
+        scalar: 1.5
+      });
+    }, 1000);
   }, []);
 
   return (
@@ -577,16 +591,78 @@ function NotAttendingConfirmedScreen({ onBack, onEdit }) {
   );
 }
 
+/* ─── Loading Screen ───────────────────────────────────────────── */
+function LoadingScreen() {
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+      style={{
+        position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+        background: '#f6f8f5', display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', zIndex: 100
+      }}
+    >
+      <div style={{ width: '160px', height: '160px', marginBottom: '1.5rem' }}>
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            className="animate-flower"
+            d="M 100 160 C 80 140, 40 120, 50 100 C 60 80, 80 90, 100 110 C 120 90, 140 80, 150 100 C 160 120, 120 140, 100 160 M 100 160 C 80 110, 60 90, 75 70 C 85 85, 95 100, 100 110 M 100 160 C 120 110, 140 90, 125 70 C 115 85, 105 100, 100 110 M 100 110 C 85 80, 85 45, 100 35 C 115 45, 115 80, 100 110"
+            stroke="#7b9c7b"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, color: '#7b9c7b', letterSpacing: '0.05em', marginBottom: '1rem', fontSize: '1.1rem' }}>
+        Loading your invitation...
+      </div>
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <motion.div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#b4c9b9' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0 }} />
+        <motion.div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#8ba791' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.2 }} />
+        <motion.div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#7b9c7b' }} animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 0.8, delay: 0.4 }} />
+      </div>
+    </motion.div>
+  );
+}
+
 /* ─── Main Page ──────────────────────────────────────────────── */
 export default function Page() {
   const [attending, setAttending] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [notAttending, setNotAttending] = useState(false);
   const [notAttendingConfirmed, setNotAttendingConfirmed] = useState(false);
+  const [initLoading, setInitLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitLoading(false);
+    }, 6500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const { days, hours, minutes, seconds } = useCountdown('2026-05-17T11:30:00');
 
-  const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } };
-  const container = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } };
+  const fade = { 
+    hidden: { opacity: 0, y: 30 }, 
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 1.2, ease: "easeOut" } 
+    } 
+  };
+  const container = { 
+    hidden: { opacity: 0 }, 
+    show: { 
+      opacity: 1, 
+      transition: { 
+        staggerChildren: 0.3,
+        delayChildren: 0.5
+      } 
+    } 
+  };
 
   if (confirmed) {
     return (
@@ -641,8 +717,13 @@ export default function Page() {
 
   return (
     <>
+      <AnimatePresence>
+        {initLoading && <LoadingScreen key="loading" />}
+      </AnimatePresence>
+
       <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
-      <motion.div className="card" variants={container} initial="hidden" animate="show">
+      {!initLoading && (
+        <motion.div className="card" variants={container} initial="hidden" animate="show">
 
       {/* ── Section 1: Header + Names ── */}
       <motion.div variants={fade} className="section-names">
@@ -730,7 +811,8 @@ export default function Page() {
         </div>
       </motion.div>
 
-    </motion.div>
+        </motion.div>
+      )}
     </>
   );
 }

@@ -36,7 +36,7 @@ html, body {
 
 /* ─── Card: Floating Design ────────────────────────────────────── */
 .card {
-  width: 95vw;
+  width: 90vw;
   max-width: 578px;
   height: 95vh;
   height: 95dvh;
@@ -504,6 +504,17 @@ html, body {
 .card::-webkit-scrollbar-track { background: transparent; }
 .card::-webkit-scrollbar-thumb { background: rgba(74,124,90,0.2); border-radius: 4px; }
 
+/* ─── Animated Loading Flower ────────────────────────────────── */
+.animate-flower {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawFlower 6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes drawFlower {
+  to { stroke-dashoffset: 0; }
+}
+
 /* ─── Shine Animation ────────────────────────────────────────── */
 .shine-name {
   background: linear-gradient(
@@ -524,4 +535,38 @@ html, body {
   0% { background-position: 200% center; }
   37.5% { background-position: -200% center; }
   100% { background-position: -200% center; }
+}
+
+/* ─── Background Flowers ───────────────────────────────────────── */
+.bg-flower {
+  position: fixed;
+  z-index: -1;
+  width: 180px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.bg-flower-tl {
+  top: -40px;
+  left: -40px;
+  transform: rotate(50deg);
+}
+
+.bg-flower-br {
+  bottom: -40px;
+  right: -40px;
+  transform: rotate(-130deg);
+}
+
+@media (min-width: 1024px) {
+  .bg-flower {
+    width: 380px;
+    opacity: 0.7;
+    top: -80px;
+    left: -80px;
+  }
+  .bg-flower-br {
+    bottom: -80px;
+    right: -80px;
+  }
 }
