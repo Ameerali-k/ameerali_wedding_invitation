@@ -46,7 +46,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-radius: 32px; /* Perfect rounded edge */
+  border-radius: 20px; /* Reduced from 32px for a modern sharp-round look */
   box-shadow:
     0 16px 40px rgba(0,0,0,0.14),
     0 6px 12px rgba(0,0,0,0.08); /* Nice premium shadow */
@@ -54,6 +54,7 @@ html, body {
   padding: 1.5rem 1rem; /* Tightened padding so content has max room */
   overflow: hidden; /* No scroll strictly anywhere */
   position: relative;
+  z-index: 5;
   justify-content: space-between; /* Space out items evenly without scrolling */
 }
 
@@ -216,9 +217,10 @@ html, body {
 }
 
 .date-box .col-day-sub {
-  font-size: 0.6rem;
-  color: var(--text-muted);
+  font-size: calc(0.6rem + 0.5px);
+  color: #000000;
   margin-top: 2px;
+  font-weight: 500;
 }
 
 .date-box .col-number {
@@ -243,7 +245,7 @@ html, body {
 @media (min-width: 600px) {
   .date-box .col            { padding: 1.25rem 0.5rem; }
   .date-box .col-day-label  { font-size: 1.1rem; }
-  .date-box .col-day-sub    { font-size: 0.75rem; }
+  .date-box .col-day-sub    { font-size: calc(0.75rem + 0.5px); color: #000; }
   .date-box .col-number-val { font-size: 4rem; }
   .date-box .col-time       { font-size: 1.1rem; }
 }
@@ -388,10 +390,11 @@ html, body {
 
 .rsvp-btn {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 7px;
-  padding: 0.65rem 0.75rem;
+  justify-content: center;
+  gap: 5px;
+  padding: 0.8rem 0.5rem;
   border-radius: 10px;
   border: 1.5px solid transparent;
   background: #fff;
@@ -406,6 +409,22 @@ html, body {
 
 .rsvp-btn-yes {
   border-color: var(--border-green);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(74, 124, 90, 0.4);
+  }
+  70% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 10px rgba(74, 124, 90, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(74, 124, 90, 0);
+  }
 }
 
 .rsvp-btn-yes .rsvp-icon {
@@ -416,32 +435,29 @@ html, body {
 
 .rsvp-btn-yes .rsvp-text {
   font-family: var(--font-delius);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-dark);
-  text-align: left;
-  white-space: nowrap;
+  text-align: center;
+  white-space: normal;
 }
 
 .rsvp-btn-no {
   border-color: var(--border-red);
-  align-items: center;
 }
 
 .rsvp-btn-no .rsvp-icon {
   width: 22px;
   height: 22px;
   flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 2px;
 }
 
 .rsvp-btn-no .rsvp-text {
   font-family: var(--font-delius);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: #c9726b;
-  text-align: left;
-  line-height: 1.25;
+  text-align: center;
+  line-height: 1.1;
 }
 
 @media (min-width: 600px) {
@@ -540,33 +556,27 @@ html, body {
 /* ─── Background Flowers ───────────────────────────────────────── */
 .bg-flower {
   position: fixed;
-  z-index: -1;
-  width: 180px;
-  opacity: 0.5;
+  z-index: 1;
+  width: 250px;
+  opacity: 0.35;
   pointer-events: none;
 }
 
 .bg-flower-tl {
-  top: -40px;
-  left: -40px;
-  transform: rotate(50deg);
+  top: 12%;
+  left: 8%;
+  transform: translate(-50%, -50%);
 }
 
 .bg-flower-br {
-  bottom: -40px;
-  right: -40px;
-  transform: rotate(-130deg);
+  bottom: 8%;
+  right: 12%;
+  transform: translate(50%, 50%);
 }
 
 @media (min-width: 1024px) {
   .bg-flower {
-    width: 380px;
-    opacity: 0.7;
-    top: -80px;
-    left: -80px;
-  }
-  .bg-flower-br {
-    bottom: -80px;
-    right: -80px;
+    width: 480px;
+    opacity: 0.5;
   }
 }

@@ -806,7 +806,7 @@ export default function Page() {
             onClick={() => setNotAttending(true)}
           >
             <img src="/images/wrong.png" className="rsvp-icon" alt="no" />
-            <span className="rsvp-text">Unfortunately,<br />I can't make it</span>
+            <span className="rsvp-text">Unfortunately, I can't make it</span>
           </button>
         </div>
       </motion.div>
