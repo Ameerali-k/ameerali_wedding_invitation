@@ -42,7 +42,7 @@ function IslamicDivider() {
   return (
     <div className="islamic-divider">
       <img src="/images/smallline.svg" className="idiv-line" alt="" />
-      <span className="idiv-text" style={{ fontWeight: 600, fontSize: 'calc(1em + 0.5px)' }}>1 Dhul Hijjah 1447</span>
+      <span className="idiv-text">1 Dhul Hijjah 1447</span>
       <img src="/images/smallline.svg" className="idiv-line" alt="" style={{ transform: 'scaleX(-1)' }} />
     </div>
   );
@@ -738,10 +738,14 @@ export default function Page() {
         </div>
       </motion.div>
 
-      {/* ── Section 2: Heart Divider + Honor ── */}
-      <motion.div variants={fade} className="section-honor">
+      {/* ── Section 2: Heart Divider ── */}
+      <motion.div variants={fade} style={{ width: '100%' }}>
         <HeartDivider />
-        <div className="honor-text" style={{ marginTop: '0.5rem' }}>
+      </motion.div>
+
+      {/* ── Section 2.5: Honor Text ── */}
+      <motion.div variants={fade} className="section-honor">
+        <div className="honor-text">
           Request the honor of your presence
         </div>
       </motion.div>

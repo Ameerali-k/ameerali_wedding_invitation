@@ -265,7 +265,8 @@ html, body {
 }
 
 .islamic-divider .idiv-text {
-  font-size: 0.72rem;
+  font-size: calc(0.72rem - 0.5px);
+  font-weight: 400;
   color: var(--green);
   white-space: nowrap;
   letter-spacing: 0.02em;

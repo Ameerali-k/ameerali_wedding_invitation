@@ -9,40 +9,117 @@ export default function Dashboard() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchData() {
-      // Fetch total count where status = attending
-      const { data: attendeesData, error: countError } = await supabase
-        .from('rsvp')
-        .select('count')
-        .eq('status', 'attending');
-
-      if (attendeesData) {
-        const sum = attendeesData.reduce((acc, row) => acc + (row.count || 0), 0);
-        setTotalCount(sum);
-      }
-
-      // Fetch messages where status = not_attending
-      const { data: msgsData, error: msgsError } = await supabase
-        .from('rsvp')
-        .select('message')
-        .eq('status', 'not_attending');
-
-      if (msgsData) {
-        setMessages(msgsData.filter(m => m.message));
-      }
-      setLoading(false);
+  const fetchData = async () => {
+    setLoading(true);
+    // Fetch total count where status = attending
+    const { data: attendeesData } = await supabase
+      .from('rsvp')
+      .select('count')
+      .eq('status', 'attending');
+    
+    if (attendeesData) {
+      const sum = attendeesData.reduce((acc, row) => acc + (row.count || 0), 0);
+      setTotalCount(sum);
     }
+
+    // Fetch messages where status = not_attending
+    const { data: msgsData } = await supabase
+      .from('rsvp')
+      .select('message')
+      .eq('status', 'not_attending');
+    
+    if (msgsData) {
+      setMessages(msgsData.filter(m => m.message));
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
+  const handleClearCategory = async (status) => {
+    const label = status === 'attending' ? 'ATTENDEES' : 'MESSAGES';
+    if (window.confirm(`Are you sure you want to clear all ${label}? This cannot be undone.`)) {
+      try {
+        const { error } = await supabase
+          .from('rsvp')
+          .delete()
+          .eq('status', status);
+        
+        if (error) {
+          console.error("Supabase Clear Error:", error);
+          alert(`Could not clear ${label}. This is usually due to RLS policies.`);
+          return;
+        }
+
+        alert(`${label} cleared successfully!`);
+        fetchData();
+      } catch (e) {
+        console.error(e);
+        alert('An unexpected error occurred: ' + e.message);
+      }
+    }
+  };
+
   return (
     <div style={{ minHeight: '100vh', width: '100%', background: '#ffffff', padding: '3rem 5%', fontFamily: 'var(--font-sans)', color: '#333' }}>
-
-      {/* Title */}
-      <h1 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.5rem', fontWeight: 800, color: '#4a4a4a', letterSpacing: '0.02em', marginBottom: '3rem' }}>
-        DASHBOARD
-      </h1>
+      
+      {/* Title + Clear Buttons */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <h1 style={{ fontFamily: 'var(--font-sans)', fontSize: '2.5rem', fontWeight: 800, color: '#4a4a4a', letterSpacing: '0.02em', margin: 0 }}>
+          DASHBOARD
+        </h1>
+        <div style={{ display: 'flex', gap: '0.8rem' }}>
+          {activeTab === 'attendees' ? (
+            <button 
+              onClick={() => handleClearCategory('attending')}
+              style={{
+                background: '#fff',
+                border: '1.5px solid #ff4d4d',
+                color: '#ff4d4d',
+                padding: '0.5rem 1rem',
+                borderRadius: '6px',
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 700,
+                fontSize: '0.75rem',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = '#ff4d4d'; e.currentTarget.style.color = '#fff'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#ff4d4d'; }}
+            >
+              CLEAR ATTENDEES
+            </button>
+          ) : (
+            <button 
+              onClick={() => handleClearCategory('not_attending')}
+              style={{
+                background: '#fff',
+                border: '1.5px solid #ff4d4d',
+                color: '#ff4d4d',
+                padding: '0.5rem 1rem',
+                borderRadius: '6px',
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 700,
+                fontSize: '0.75rem',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = '#ff4d4d'; e.currentTarget.style.color = '#fff'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#ff4d4d'; }}
+            >
+              CLEAR MESSAGES
+            </button>
+          )}
+        </div>
+      </div>
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
