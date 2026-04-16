@@ -717,6 +717,9 @@ export default function Page() {
 
   return (
     <>
+      <img src="/images/flower.svg" alt="" className="bg-flower bg-flower-tl" />
+      <img src="/images/flower.svg" alt="" className="bg-flower bg-flower-br" />
+
       <AnimatePresence>
         {initLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
