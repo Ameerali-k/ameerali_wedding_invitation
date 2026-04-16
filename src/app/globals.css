@@ -1,26 +1,527 @@
-@import "tailwindcss";
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+/* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f2f2ec;
+  --green: #4a7c5a;
+  --green-mid: #5c8c6a;
+  --green-light: #6b9970;
+  --text-dark: #1a1a1a;
+  --text-muted: #888;
+  --border-green: #7db37d;
+  --border-red: #e8a0a0;
+  --font-name: var(--font-cigra), serif;
+  --font-cinzel: var(--font-cinzel), serif;
+  --font-cigra: var(--font-cigra), monospace;
+  --font-sans: 'Outfit', sans-serif;
+  --font-delius: 'Delius Swash Caps', cursive;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Global ─────────────────────────────────────────────────── */
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #e8e8e2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Card: Floating Design ────────────────────────────────────── */
+.card {
+  width: 95vw;
+  max-width: 578px;
+  height: 95vh;
+  height: 95dvh;
+  max-height: 950px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 32px; /* Perfect rounded edge */
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.14),
+    0 6px 12px rgba(0,0,0,0.08); /* Nice premium shadow */
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 1.5rem 1rem; /* Tightened padding so content has max room */
+  overflow: hidden; /* No scroll strictly anywhere */
+  position: relative;
+  justify-content: space-between; /* Space out items evenly without scrolling */
+}
+
+/* ─── Desktop override ───────────────────────────────────────── */
+@media (min-width: 600px) {
+  body {
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  .card {
+    height: 95vh;
+    min-height: unset;
+    margin: 0;
+    padding: 2rem 1.5rem;
+    justify-content: space-between; /* Space-between ensuring no scroll */
+    gap: 0; /* Let space-between handle spacing naturally */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+/* ─── Section containers ─────────────────────────────────────── */
+.section-names,
+.section-honor,
+.section-date,
+.section-venue,
+.section-countdown,
+.section-rsvp {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── Spacers (tiny on mobile to fit in 100vh) ───────────────── */
+.spacer-sm  { height: 0.45rem; }
+.spacer-md  { height: 0.75rem; }
+.spacer-lg  { height: 1rem; }
+
+@media (min-width: 600px) {
+  .spacer-sm  { height: 1rem; }
+  .spacer-md  { height: 1.5rem; }
+  .spacer-lg  { height: 2rem; }
+}
+
+/* ─── Together Text ──────────────────────────────────────────── */
+.together-text {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (min-width: 600px) {
+  .together-text { font-size: 0.65rem; }
+}
+
+/* ─── Names (CIGRA font) ─────────────────────────────────────── */
+.name-groom {
+  font-family: var(--font-cigra), serif;
+  font-size: 2.3rem; /* Reduced from 2.6rem */
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+}
+
+.name-ampersand {
+  font-family: var(--font-cinzel), serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--green);
+  line-height: 1.1;
+}
+
+.name-bride {
+  font-family: var(--font-cigra), serif;
+  font-size: 2.3rem; /* Reduced from 2.6rem */
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 600px) {
+  .name-groom, .name-bride { font-size: 3.8rem; } /* Reduced from 4.2rem */
+  .name-ampersand { font-size: 1.9rem; }
+}
+
+/* ─── Heart Divider ──────────────────────────────────────────── */
+.heart-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.heart-divider .line-img {
+  flex: 1;
+  height: 1px;
+}
+
+.heart-divider .heart-img {
+  width: 16px;
+  height: 15px;
+  margin: 0 8px; /* Reduced from 20px to bring lines closer */
+  flex-shrink: 0;
+}
+
+@media (min-width: 600px) {
+  .heart-divider .heart-img { width: 22px; height: 20px; margin: 0 8px; } /* Same close distance as mobile */
+}
+
+/* ─── Honor Text ─────────────────────────────────────────────── */
+.honor-text {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+@media (min-width: 600px) {
+  .honor-text { font-size: 0.72rem; letter-spacing: 0.18em; }
+}
+
+/* ─── Date Box ───────────────────────────────────────────────── */
+.date-box {
+  width: 100%;
+  display: flex;
+  border: 1.5px solid var(--border-green);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.date-box .col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.25rem;
+}
+
+.date-box .col-divider {
+  width: 1.5px;
+  background: var(--border-green);
+  flex-shrink: 0;
+}
+
+.date-box .col-day-label {
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--green);
+  letter-spacing: 0.04em;
+}
+
+.date-box .col-day-sub {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.date-box .col-number {
+  flex: 0.85;
+  background: #ecf0eb;
+}
+
+.date-box .col-number-val {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--green);
+  line-height: 1;
+}
+
+.date-box .col-time {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 600px) {
+  .date-box .col            { padding: 1.25rem 0.5rem; }
+  .date-box .col-day-label  { font-size: 1.1rem; }
+  .date-box .col-day-sub    { font-size: 0.75rem; }
+  .date-box .col-number-val { font-size: 4rem; }
+  .date-box .col-time       { font-size: 1.1rem; }
+}
+
+/* ─── Islamic Date Divider ───────────────────────────────────── */
+.islamic-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.islamic-divider .idiv-line {
+  width: 33px;
+  height: 1px;
+}
+
+.islamic-divider .idiv-text {
+  font-size: 0.72rem;
+  color: var(--green);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Venue ──────────────────────────────────────────────────── */
+.venue-name {
+  font-family: var(--font-cinzel);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  line-height: 1.2;
+}
+
+.venue-address {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: #3a3a3a;
+  margin-top: 4px;
+}
+
+.venue-address .loc-icon {
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  color: var(--green-light);
+}
+
+@media (min-width: 600px) {
+  .venue-name    { font-size: 1.35rem; }
+  .venue-address { font-size: 0.87rem; margin-top: 5px; }
+}
+
+/* ─── Full-width Divider ─────────────────────────────────────── */
+.full-divider {
+  width: 100%;
+  height: 1px;
+  background: #d5d5cc;
+}
+
+/* ─── Countdown ──────────────────────────────────────────────── */
+.countdown-label-row {
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+}
+
+.countdown-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.countdown-box {
+  width: 100%;
+  padding: 0.6rem 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow:
+    inset 0 3px 8px rgba(0,0,0,0.12),
+    inset 0 1px 4px rgba(0,0,0,0.08);
+  font-family: var(--font-cigra);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.05em;
+}
+
+.countdown-unit {
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+@media (min-width: 600px) {
+  .countdown-label-row  { font-size: 0.65rem; }
+  .countdown-grid       { gap: 10px; }
+  .countdown-cell       { gap: 8px; }
+  .countdown-box        { padding: 1rem 0; font-size: 2rem; border-radius: 10px; }
+  .countdown-unit       { font-size: 0.6rem; }
+}
+
+/* ─── RSVP ───────────────────────────────────────────────────── */
+.rsvp-label {
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.rsvp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.rsvp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1.5px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rsvp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
+
+.rsvp-btn-yes {
+  border-color: var(--border-green);
+}
+
+.rsvp-btn-yes .rsvp-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.rsvp-btn-yes .rsvp-text {
+  font-family: var(--font-delius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rsvp-btn-no {
+  border-color: var(--border-red);
+  align-items: center;
+}
+
+.rsvp-btn-no .rsvp-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.rsvp-btn-no .rsvp-text {
+  font-family: var(--font-delius);
+  font-size: 0.78rem;
+  color: #c9726b;
+  text-align: left;
+  line-height: 1.25;
+}
+
+@media (min-width: 600px) {
+  .rsvp-row               { gap: 14px; }
+  .rsvp-btn               { padding: 0.85rem 1rem; border-radius: 12px; gap: 10px; }
+  .rsvp-btn-yes .rsvp-icon,
+  .rsvp-btn-no .rsvp-icon { width: 28px; height: 28px; }
+  .rsvp-btn-yes .rsvp-text,
+  .rsvp-btn-no .rsvp-text  { font-size: 1rem; }
+  .rsvp-label             { font-size: 0.65rem; }
+}
+
+/* ─── Submit RSVP Button ────────────────────────────────────── */
+.submit-rsvp-btn {
+  width: 100%;
+  height: 52px;
+  background: #6c8a71;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.submit-rsvp-btn:hover {
+  background: #2D3436;
+}
+
+/* ─── Edit Response Button ──────────────────────────────────── */
+.edit-response-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #2D3436;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background 0.3s ease;
+}
+
+.edit-response-btn:hover {
+  background: var(--green); /* transitions to green */
+}
+
+/* ─── Scrollbar (desktop) ────────────────────────────────────── */
+.card::-webkit-scrollbar { width: 4px; }
+.card::-webkit-scrollbar-track { background: transparent; }
+.card::-webkit-scrollbar-thumb { background: rgba(74,124,90,0.2); border-radius: 4px; }
+
+/* ─── Shine Animation ────────────────────────────────────────── */
+.shine-name {
+  background: linear-gradient(
+    120deg,
+    var(--text-dark) 40%,
+    #ffffff 50%,
+    var(--text-dark) 60%
+  );
+  background-size: 300% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shineAnimation 8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes shineAnimation {
+  0% { background-position: 200% center; }
+  37.5% { background-position: -200% center; }
+  100% { background-position: -200% center; }
 }
