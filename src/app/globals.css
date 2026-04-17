@@ -1,5 +1,7 @@
 /* ─── Reset ─────────────────────────────────────────────────── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -23,7 +25,8 @@
 }
 
 /* ─── Global ─────────────────────────────────────────────────── */
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   background: #e8e8e2;
@@ -46,16 +49,21 @@ html, body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-radius: 20px; /* Reduced from 32px for a modern sharp-round look */
+  border-radius: 20px;
+  /* Reduced from 32px for a modern sharp-round look */
   box-shadow:
-    0 16px 40px rgba(0,0,0,0.14),
-    0 6px 12px rgba(0,0,0,0.08); /* Nice premium shadow */
-  border: 1px solid rgba(255,255,255,0.4);
-  padding: 1.5rem 1rem; /* Tightened padding so content has max room */
-  overflow: hidden; /* No scroll strictly anywhere */
+    0 16px 40px rgba(0, 0, 0, 0.14),
+    0 6px 12px rgba(0, 0, 0, 0.08);
+  /* Nice premium shadow */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 1.5rem 1rem;
+  /* Tightened padding so content has max room */
+  overflow: hidden;
+  /* No scroll strictly anywhere */
   position: relative;
   z-index: 5;
-  justify-content: space-between; /* Space out items evenly without scrolling */
+  justify-content: space-between;
+  /* Space out items evenly without scrolling */
 }
 
 /* ─── Desktop override ───────────────────────────────────────── */
@@ -65,13 +73,16 @@ html, body {
     min-height: 100vh;
     padding: 2rem 1rem;
   }
+
   .card {
     height: 95vh;
     min-height: unset;
     margin: 0;
     padding: 2rem 1.5rem;
-    justify-content: space-between; /* Space-between ensuring no scroll */
-    gap: 0; /* Let space-between handle spacing naturally */
+    justify-content: space-between;
+    /* Space-between ensuring no scroll */
+    gap: 0;
+    /* Let space-between handle spacing naturally */
   }
 }
 
@@ -91,14 +102,30 @@ html, body {
 }
 
 /* ─── Spacers (tiny on mobile to fit in 100vh) ───────────────── */
-.spacer-sm  { height: 0.45rem; }
-.spacer-md  { height: 0.75rem; }
-.spacer-lg  { height: 1rem; }
+.spacer-sm {
+  height: 0.45rem;
+}
+
+.spacer-md {
+  height: 0.75rem;
+}
+
+.spacer-lg {
+  height: 1rem;
+}
 
 @media (min-width: 600px) {
-  .spacer-sm  { height: 1rem; }
-  .spacer-md  { height: 1.5rem; }
-  .spacer-lg  { height: 2rem; }
+  .spacer-sm {
+    height: 1rem;
+  }
+
+  .spacer-md {
+    height: 1.5rem;
+  }
+
+  .spacer-lg {
+    height: 2rem;
+  }
 }
 
 /* ─── Together Text ──────────────────────────────────────────── */
@@ -112,13 +139,16 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .together-text { font-size: 0.65rem; }
+  .together-text {
+    font-size: 0.65rem;
+  }
 }
 
 /* ─── Names (CIGRA font) ─────────────────────────────────────── */
 .name-groom {
   font-family: var(--font-cigra), serif;
-  font-size: 2.3rem; /* Reduced from 2.6rem */
+  font-size: 2.3rem;
+  /* Reduced from 2.6rem */
   font-weight: 400;
   line-height: 1;
   color: var(--text-dark);
@@ -135,7 +165,8 @@ html, body {
 
 .name-bride {
   font-family: var(--font-cigra), serif;
-  font-size: 2.3rem; /* Reduced from 2.6rem */
+  font-size: 2.3rem;
+  /* Reduced from 2.6rem */
   font-weight: 400;
   line-height: 1;
   color: var(--text-dark);
@@ -143,8 +174,16 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .name-groom, .name-bride { font-size: 3.8rem; } /* Reduced from 4.2rem */
-  .name-ampersand { font-size: 1.9rem; }
+
+  .name-groom,
+  .name-bride {
+    font-size: 3.8rem;
+  }
+
+  /* Reduced from 4.2rem */
+  .name-ampersand {
+    font-size: 1.9rem;
+  }
 }
 
 /* ─── Heart Divider ──────────────────────────────────────────── */
@@ -162,12 +201,19 @@ html, body {
 .heart-divider .heart-img {
   width: 16px;
   height: 15px;
-  margin: 0 8px; /* Reduced from 20px to bring lines closer */
+  margin: 0 8px;
+  /* Reduced from 20px to bring lines closer */
   flex-shrink: 0;
 }
 
 @media (min-width: 600px) {
-  .heart-divider .heart-img { width: 22px; height: 20px; margin: 0 8px; } /* Same close distance as mobile */
+  .heart-divider .heart-img {
+    width: 22px;
+    height: 20px;
+    margin: 0 8px;
+  }
+
+  /* Same close distance as mobile */
 }
 
 /* ─── Honor Text ─────────────────────────────────────────────── */
@@ -181,7 +227,10 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .honor-text { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .honor-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
 }
 
 /* ─── Date Box ───────────────────────────────────────────────── */
@@ -243,11 +292,26 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .date-box .col            { padding: 1.25rem 0.5rem; }
-  .date-box .col-day-label  { font-size: 1.1rem; }
-  .date-box .col-day-sub    { font-size: calc(0.75rem + 0.5px); color: #000; }
-  .date-box .col-number-val { font-size: 4rem; }
-  .date-box .col-time       { font-size: 1.1rem; }
+  .date-box .col {
+    padding: 1.25rem 0.5rem;
+  }
+
+  .date-box .col-day-label {
+    font-size: 1.1rem;
+  }
+
+  .date-box .col-day-sub {
+    font-size: calc(0.75rem + 0.5px);
+    color: #000;
+  }
+
+  .date-box .col-number-val {
+    font-size: 4rem;
+  }
+
+  .date-box .col-time {
+    font-size: 1.1rem;
+  }
 }
 
 /* ─── Islamic Date Divider ───────────────────────────────────── */
@@ -301,8 +365,14 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .venue-name    { font-size: 1.35rem; }
-  .venue-address { font-size: 0.87rem; margin-top: 5px; }
+  .venue-name {
+    font-size: 1.35rem;
+  }
+
+  .venue-address {
+    font-size: 0.87rem;
+    margin-top: 5px;
+  }
 }
 
 /* ─── Full-width Divider ─────────────────────────────────────── */
@@ -344,8 +414,8 @@ html, body {
   background: #fff;
   border-radius: 8px;
   box-shadow:
-    inset 0 3px 8px rgba(0,0,0,0.12),
-    inset 0 1px 4px rgba(0,0,0,0.08);
+    inset 0 3px 8px rgba(0, 0, 0, 0.12),
+    inset 0 1px 4px rgba(0, 0, 0, 0.08);
   font-family: var(--font-cigra);
   font-size: 1.4rem;
   font-weight: 400;
@@ -363,11 +433,27 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .countdown-label-row  { font-size: 0.65rem; }
-  .countdown-grid       { gap: 10px; }
-  .countdown-cell       { gap: 8px; }
-  .countdown-box        { padding: 1rem 0; font-size: 2rem; border-radius: 10px; }
-  .countdown-unit       { font-size: 0.6rem; }
+  .countdown-label-row {
+    font-size: 0.65rem;
+  }
+
+  .countdown-grid {
+    gap: 10px;
+  }
+
+  .countdown-cell {
+    gap: 8px;
+  }
+
+  .countdown-box {
+    padding: 1rem 0;
+    font-size: 2rem;
+    border-radius: 10px;
+  }
+
+  .countdown-unit {
+    font-size: 0.6rem;
+  }
 }
 
 /* ─── RSVP ───────────────────────────────────────────────────── */
@@ -405,7 +491,7 @@ html, body {
 
 .rsvp-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
 }
 
 .rsvp-btn-yes {
@@ -418,10 +504,12 @@ html, body {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(74, 124, 90, 0.4);
   }
+
   70% {
     transform: scale(1.02);
     box-shadow: 0 0 0 10px rgba(74, 124, 90, 0);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(74, 124, 90, 0);
@@ -462,13 +550,30 @@ html, body {
 }
 
 @media (min-width: 600px) {
-  .rsvp-row               { gap: 14px; }
-  .rsvp-btn               { padding: 0.85rem 1rem; border-radius: 12px; gap: 10px; }
+  .rsvp-row {
+    gap: 14px;
+  }
+
+  .rsvp-btn {
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
   .rsvp-btn-yes .rsvp-icon,
-  .rsvp-btn-no .rsvp-icon { width: 28px; height: 28px; }
+  .rsvp-btn-no .rsvp-icon {
+    width: 28px;
+    height: 28px;
+  }
+
   .rsvp-btn-yes .rsvp-text,
-  .rsvp-btn-no .rsvp-text  { font-size: 1rem; }
-  .rsvp-label             { font-size: 0.65rem; }
+  .rsvp-btn-no .rsvp-text {
+    font-size: 1rem;
+  }
+
+  .rsvp-label {
+    font-size: 0.65rem;
+  }
 }
 
 /* ─── Submit RSVP Button ────────────────────────────────────── */
@@ -513,33 +618,43 @@ html, body {
 }
 
 .edit-response-btn:hover {
-  background: var(--green); /* transitions to green */
+  background: var(--green);
+  /* transitions to green */
 }
 
 /* ─── Scrollbar (desktop) ────────────────────────────────────── */
-.card::-webkit-scrollbar { width: 4px; }
-.card::-webkit-scrollbar-track { background: transparent; }
-.card::-webkit-scrollbar-thumb { background: rgba(74,124,90,0.2); border-radius: 4px; }
+.card::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: rgba(74, 124, 90, 0.2);
+  border-radius: 4px;
+}
 
 /* ─── Animated Loading Flower ────────────────────────────────── */
 .animate-flower {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawFlower 6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawFlower 6s linear forwards;
 }
 
 @keyframes drawFlower {
-  to { stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* ─── Shine Animation ────────────────────────────────────────── */
 .shine-name {
-  background: linear-gradient(
-    120deg,
-    var(--text-dark) 40%,
-    #ffffff 50%,
-    var(--text-dark) 60%
-  );
+  background: linear-gradient(120deg,
+      var(--text-dark) 40%,
+      #ffffff 50%,
+      var(--text-dark) 60%);
   background-size: 300% auto;
   color: transparent;
   -webkit-background-clip: text;
@@ -549,9 +664,17 @@ html, body {
 }
 
 @keyframes shineAnimation {
-  0% { background-position: 200% center; }
-  37.5% { background-position: -200% center; }
-  100% { background-position: -200% center; }
+  0% {
+    background-position: 200% center;
+  }
+
+  37.5% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
 }
 
 /* ─── Background Flowers ───────────────────────────────────────── */

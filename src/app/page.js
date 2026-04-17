@@ -604,11 +604,11 @@ function LoadingScreen() {
         alignItems: 'center', justifyContent: 'center', zIndex: 100
       }}
     >
-      <div style={{ width: '160px', height: '160px', marginBottom: '1.5rem' }}>
+      <div style={{ width: '160px', height: '160px', marginBottom: '0.5rem' }}>
         <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             className="animate-flower"
-            d="M 100 160 C 80 140, 40 120, 50 100 C 60 80, 80 90, 100 110 C 120 90, 140 80, 150 100 C 160 120, 120 140, 100 160 M 100 160 C 80 110, 60 90, 75 70 C 85 85, 95 100, 100 110 M 100 160 C 120 110, 140 90, 125 70 C 115 85, 105 100, 100 110 M 100 110 C 85 80, 85 45, 100 35 C 115 45, 115 80, 100 110"
+            d="M 100 160 C 80 140, 40 120, 50 100 C 60 80, 80 90, 100 110 C 120 90, 140 80, 150 100 C 160 120, 120 140, 100 160 C 80 110, 60 90, 75 70 C 85 85, 95 100, 100 110 C 85 80, 85 45, 100 35 C 115 45, 115 80, 100 110 C 105 100, 115 85, 125 70 C 140 90, 120 110, 100 160"
             stroke="#7b9c7b"
             strokeWidth="2"
             strokeLinecap="round"
@@ -616,7 +616,7 @@ function LoadingScreen() {
           />
         </svg>
       </div>
-      <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 600, color: '#7b9c7b', letterSpacing: '0.05em', marginBottom: '1rem', fontSize: '1.1rem' }}>
+      <div style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: '#7b9c7b', letterSpacing: '0.05em', marginBottom: '1rem', fontSize: '1.1rem', textAlign: 'center' }}>
         Loading your invitation...
       </div>
       <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -639,7 +639,7 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setInitLoading(false);
-    }, 6500);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
