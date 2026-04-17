@@ -249,9 +249,6 @@ function SuccessScreen({ onBack, onSubmit }) {
           )}
         </button>
       </div>
-      <style>{`
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-      `}</style>
     </motion.div>
   );
 }
