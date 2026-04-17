@@ -14,8 +14,8 @@ function useCountdown(targetDateStr) {
       const diff = target - Date.now();
       if (diff <= 0) return;
       setTimeLeft({
-        days:    Math.floor(diff / 86400000),
-        hours:   Math.floor((diff % 86400000) / 3600000),
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
         minutes: Math.floor((diff % 3600000) / 60000),
         seconds: Math.floor((diff % 60000) / 1000),
       });
@@ -137,28 +137,28 @@ function SuccessScreen({ onBack, onSubmit }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      style={{ 
-        background: '#ffffff', 
-        display: 'flex', 
-        flexDirection: 'column', 
+      style={{
+        background: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '2rem 1rem', 
+        padding: '2rem 1rem',
         boxSizing: 'border-box',
         height: 'fit-content',
         minHeight: 'auto'
       }}
     >
-      
+
       {/* Centering Container */}
       <div style={{ width: '100%', maxWidth: '459px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        
+
         {/* Header Row */}
         <div style={{ width: '100%', display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-          <button 
+          <button
             onClick={onBack}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer', 
+            style={{
+              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer',
               color: '#8b9a90', padding: '0', display: 'flex', alignItems: 'center'
             }}
           >
@@ -171,11 +171,11 @@ function SuccessScreen({ onBack, onSubmit }) {
         </div>
 
         {/* Counter box */}
-        <div style={{ 
-          background: '#f8f8f5', 
-          border: '1px solid #e1e0d4', 
-          borderRadius: '8px', 
-          width: '100%', 
+        <div style={{
+          background: '#f8f8f5',
+          border: '1px solid #e1e0d4',
+          borderRadius: '8px',
+          width: '100%',
           height: '216px',
           display: 'flex',
           flexDirection: 'column',
@@ -188,44 +188,44 @@ function SuccessScreen({ onBack, onSubmit }) {
           <div style={{ fontFamily: 'var(--font-delius)', fontSize: '1.2rem', color: '#111', marginBottom: '1.5rem' }}>
             How many family members will attend?
           </div>
-          
+
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1.5rem', marginBottom: '1.2rem' }}>
-            <button 
+            <button
               onClick={() => setCount(Math.max(1, count - 1))}
-              style={{ 
-                width: '3.5rem', height: '3.5rem', borderRadius: '50%', border: 'none', 
-                background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.04)', 
-                fontSize: '2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', 
-                justifyContent: 'center', color: '#111' 
+              style={{
+                width: '3.5rem', height: '3.5rem', borderRadius: '50%', border: 'none',
+                background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.04)',
+                fontSize: '2rem', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', color: '#111'
               }}
             >
               -
             </button>
-            
+
             <div style={{ fontFamily: 'var(--font-cigra)', fontSize: '4.5rem', color: '#111', minWidth: '4rem', textAlign: 'center', lineHeight: 1 }}>
               {count}
             </div>
-            
-            <button 
+
+            <button
               onClick={() => setCount(count + 1)}
-              style={{ 
-                width: '3.5rem', height: '3.5rem', borderRadius: '50%', border: 'none', 
-                background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.04)', 
-                fontSize: '1.8rem', cursor: 'pointer', display: 'flex', alignItems: 'center', 
-                justifyContent: 'center', color: '#111' 
+              style={{
+                width: '3.5rem', height: '3.5rem', borderRadius: '50%', border: 'none',
+                background: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.04)',
+                fontSize: '1.8rem', cursor: 'pointer', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', color: '#111'
               }}
             >
               +
             </button>
           </div>
-          
+
           <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.7rem', color: '#777', letterSpacing: '0.15em', fontWeight: 'bold' }}>
             INCLUDING YOURSELF
           </div>
         </div>
-        
+
         {/* Submit Button */}
-        <button 
+        <button
           className="submit-rsvp-btn"
           disabled={isSubmitting}
           onClick={() => {
@@ -249,6 +249,9 @@ function SuccessScreen({ onBack, onSubmit }) {
           )}
         </button>
       </div>
+      <style>{`
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+      `}</style>
     </motion.div>
   );
 }
@@ -297,13 +300,13 @@ function ConfirmedScreen({ onEdit }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      style={{ 
-        background: '#ffffff', 
-        display: 'flex', 
-        flexDirection: 'column', 
+      style={{
+        background: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1.5rem 1.2rem', 
+        padding: '1.5rem 1.2rem',
         boxSizing: 'border-box',
         overflowY: 'hidden'
       }}
@@ -318,12 +321,12 @@ function ConfirmedScreen({ onEdit }) {
       </div>
 
       {/* Quote Box */}
-      <div style={{ 
-        width: '100%', maxWidth: '459px', 
-        background: '#fafaf8', 
-        border: '1px solid #e1e0d4', 
-        borderRadius: '8px', 
-        padding: '0.8rem', 
+      <div style={{
+        width: '100%', maxWidth: '459px',
+        background: '#fafaf8',
+        border: '1px solid #e1e0d4',
+        borderRadius: '8px',
+        padding: '0.8rem',
         marginTop: '0.8rem',
         position: 'relative',
         textAlign: 'center'
@@ -340,7 +343,7 @@ function ConfirmedScreen({ onEdit }) {
 
       {/* Date / Venue section */}
       <div style={{ width: '100%', maxWidth: '459px', display: 'flex', alignItems: 'center' }}>
-        
+
         {/* Left Col - Date */}
         <div style={{ flex: '0 0 110px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1.5px solid #d5d5cc', paddingRight: '0.5rem' }}>
           <div style={{ fontFamily: 'var(--font-cigra)', fontSize: '2.8rem', color: '#111', lineHeight: 1 }}>17</div>
@@ -355,33 +358,33 @@ function ConfirmedScreen({ onEdit }) {
           <div style={{ fontFamily: '"Outfit", var(--font-sans), sans-serif', fontSize: '0.68rem', fontWeight: 600, color: '#333', marginTop: '0.4rem' }}>
             Mayilady Road, Kaipuram, Pattambi
           </div>
-          
-          <a href="https://maps.app.goo.gl/krSYAMbqxmesL1vL7" target="_blank" rel="noopener noreferrer" style={{ 
-            marginTop: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', 
-            padding: '0.4rem 0.8rem', borderRadius: '25px', border: '1px solid var(--green, #6c8a71)', textDecoration: 'none', background: '#eaf4eb' 
+
+          <a href="https://maps.app.goo.gl/krSYAMbqxmesL1vL7" target="_blank" rel="noopener noreferrer" style={{
+            marginTop: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem',
+            padding: '0.4rem 0.8rem', borderRadius: '25px', border: '1px solid var(--green, #6c8a71)', textDecoration: 'none', background: '#eaf4eb'
           }}>
-            <svg width="10" height="12" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 0C3.13 0 0 3.13 0 7C0 12.25 7 18 7 18C7 18 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" fill="#6c8a71"/></svg>
+            <svg width="10" height="12" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 0C3.13 0 0 3.13 0 7C0 12.25 7 18 7 18C7 18 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" fill="#6c8a71" /></svg>
             <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.5rem', fontWeight: 800, color: 'var(--green, #6c8a71)', letterSpacing: '0.05em' }}>CLICK HERE FOR LOCATION</span>
           </a>
         </div>
       </div>
 
       {/* Phone Button */}
-      <a href="tel:8089297628" style={{ 
-        width: 'fit-content', marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', 
-        padding: '0.6rem 1.8rem', borderRadius: '8px', background: '#e6faeb', textDecoration: 'none', border: '1px solid #bceabf' 
+      <a href="tel:8089297628" style={{
+        width: 'fit-content', marginTop: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
+        padding: '0.6rem 1.8rem', borderRadius: '8px', background: '#e6faeb', textDecoration: 'none', border: '1px solid #bceabf'
       }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" stroke="#10884d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.76 15.51 20 15.51C20.55 15.51 21 15.96 21 16.51V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" stroke="#10884d" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: 700, color: '#10884d', letterSpacing: '0.02em' }}>808 929 7628</span>
       </a>
 
       {/* Countdown Box */}
-      <div style={{ 
-        width: '100%', maxWidth: '459px', 
-        background: '#fafaf8', 
-        border: '1px solid #e1e0d4', 
-        borderRadius: '8px', 
-        padding: '0.8rem', 
+      <div style={{
+        width: '100%', maxWidth: '459px',
+        background: '#fafaf8',
+        border: '1px solid #e1e0d4',
+        borderRadius: '8px',
+        padding: '0.8rem',
         marginTop: '1rem',
         display: 'flex',
         flexDirection: 'column',
@@ -391,10 +394,10 @@ function ConfirmedScreen({ onEdit }) {
           COUNTDOWN TO RECEPTION
         </div>
         <div className="countdown-grid">
-          <CountdownCell value={days}    label="DAYS"  />
-          <CountdownCell value={hours}   label="HOURS" />
-          <CountdownCell value={minutes} label="MINS"  />
-          <CountdownCell value={seconds} label="SECS"  />
+          <CountdownCell value={days} label="DAYS" />
+          <CountdownCell value={hours} label="HOURS" />
+          <CountdownCell value={minutes} label="MINS" />
+          <CountdownCell value={seconds} label="SECS" />
         </div>
       </div>
 
@@ -425,11 +428,11 @@ function NotAttendingScreen({ onBack, onSubmit }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      style={{ 
-        background: '#ffffff', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        padding: '2.5rem 1.5rem', 
+      style={{
+        background: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '2.5rem 1.5rem',
         boxSizing: 'border-box',
         height: 'fit-content',
         minHeight: 'auto',
@@ -437,18 +440,18 @@ function NotAttendingScreen({ onBack, onSubmit }) {
       }}
     >
       <div style={{ width: '100%', maxWidth: '459px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-        
+
         {/* Header with Back Button */}
         <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', position: 'relative' }}>
-          <button 
+          <button
             onClick={onBack}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer', 
+            style={{
+              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer',
               color: '#a3afaa', padding: '10px', display: 'flex', alignItems: 'center',
               position: 'absolute', left: '-10px', top: '-2px', zIndex: 10
             }}
           >
-            <svg width="12" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 15L1.5 8L8.5 1" stroke="#a3afaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="12" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 15L1.5 8L8.5 1" stroke="#a3afaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
           <div style={{ flex: 1, textAlign: 'center', fontFamily: 'var(--font-cigra)', fontSize: '2.5rem', color: '#111' }}>
             We Understand
@@ -480,7 +483,7 @@ function NotAttendingScreen({ onBack, onSubmit }) {
         </div>
 
         <div style={{ marginTop: '3.5rem' }}>
-          <button 
+          <button
             className="submit-rsvp-btn"
             disabled={isSubmitting}
             onClick={() => {
@@ -518,11 +521,11 @@ function NotAttendingConfirmedScreen({ onBack, onEdit }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      style={{ 
-        background: '#ffffff', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        padding: '2.5rem 1.5rem', 
+      style={{
+        background: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '2.5rem 1.5rem',
         boxSizing: 'border-box',
         height: 'fit-content',
         minHeight: 'auto',
@@ -530,18 +533,18 @@ function NotAttendingConfirmedScreen({ onBack, onEdit }) {
       }}
     >
       <div style={{ width: '100%', maxWidth: '459px', display: 'flex', flexDirection: 'column', flex: 1, alignItems: 'center' }}>
-        
+
         {/* Header with Back Button */}
         <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%', position: 'relative' }}>
-          <button 
+          <button
             onClick={onBack}
-            style={{ 
-              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer', 
+            style={{
+              background: 'none', border: 'none', fontSize: '1.2rem', cursor: 'pointer',
               color: '#a3afaa', padding: '10px', display: 'flex', alignItems: 'center',
               position: 'absolute', left: '-10px', top: '-2px', zIndex: 10
             }}
           >
-            <svg width="12" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 15L1.5 8L8.5 1" stroke="#a3afaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="12" height="18" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.5 15L1.5 8L8.5 1" stroke="#a3afaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         </div>
 
@@ -555,12 +558,12 @@ function NotAttendingConfirmedScreen({ onBack, onEdit }) {
         </div>
 
         {/* Quote Box */}
-        <div style={{ 
-          width: '100%', 
-          background: '#fafaf8', 
-          border: '1px solid #e1e0d4', 
-          borderRadius: '8px', 
-          padding: '1.5rem 1rem', 
+        <div style={{
+          width: '100%',
+          background: '#fafaf8',
+          border: '1px solid #e1e0d4',
+          borderRadius: '8px',
+          padding: '1.5rem 1rem',
           marginTop: '2rem',
           position: 'relative',
           textAlign: 'center'
@@ -636,29 +639,29 @@ export default function Page() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setInitLoading(false);
-    }, 2000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   const { days, hours, minutes, seconds } = useCountdown('2026-05-17T11:30:00');
 
-  const fade = { 
-    hidden: { opacity: 0, y: 30 }, 
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 1.2, ease: "easeOut" } 
-    } 
+  const fade = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.2, ease: "easeOut" }
+    }
   };
-  const container = { 
-    hidden: { opacity: 0 }, 
-    show: { 
-      opacity: 1, 
-      transition: { 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
         staggerChildren: 0.3,
         delayChildren: 0.5
-      } 
-    } 
+      }
+    }
   };
 
   if (confirmed) {
@@ -672,9 +675,9 @@ export default function Page() {
 
   if (notAttendingConfirmed) {
     return (
-      <NotAttendingConfirmedScreen 
-        onBack={() => setNotAttendingConfirmed(false)} 
-        onEdit={() => { setNotAttendingConfirmed(false); setNotAttending(false); }} 
+      <NotAttendingConfirmedScreen
+        onBack={() => setNotAttendingConfirmed(false)}
+        onEdit={() => { setNotAttendingConfirmed(false); setNotAttending(false); }}
       />
     );
   }
@@ -682,14 +685,14 @@ export default function Page() {
   if (notAttending) {
     return (
       <>
-        <NotAttendingScreen 
-          onBack={() => setNotAttending(false)} 
-          onSubmit={async (note) => { 
+        <NotAttendingScreen
+          onBack={() => setNotAttending(false)}
+          onSubmit={async (note) => {
             try {
               await supabase.from('rsvp').insert([{ status: 'not_attending', message: note }]);
-            } catch(e) { console.error(e); }
-            setNotAttendingConfirmed(true); 
-          }} 
+            } catch (e) { console.error(e); }
+            setNotAttendingConfirmed(true);
+          }}
         />
       </>
     );
@@ -699,14 +702,14 @@ export default function Page() {
     return (
       <>
         <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
-        <SuccessScreen 
-          onBack={() => setAttending(false)} 
-          onSubmit={async (count) => { 
+        <SuccessScreen
+          onBack={() => setAttending(false)}
+          onSubmit={async (count) => {
             try {
               await supabase.from('rsvp').insert([{ status: 'attending', count }]);
-            } catch(e) { console.error(e); }
-            setConfirmed(true); 
-          }} 
+            } catch (e) { console.error(e); }
+            setConfirmed(true);
+          }}
         />
       </>
     );
@@ -725,95 +728,95 @@ export default function Page() {
       {!initLoading && (
         <motion.div className="card" variants={container} initial="hidden" animate="show">
 
-      {/* ── Section 1: Header + Names ── */}
-      <motion.div variants={fade} className="section-names">
-        <div className="together-text">Together with their families</div>
-        <div style={{ lineHeight: 1.0, marginTop: '0.4rem' }}>
-          <div className="name-groom shine-name">Ameerali</div>
-          <div className="name-ampersand" style={{ fontFamily: 'var(--font-cigra)', fontStyle: 'normal' }}>&amp;</div>
-          <div className="name-bride shine-name">Aslaha Thasni</div>
-        </div>
-      </motion.div>
+          {/* ── Section 1: Header + Names ── */}
+          <motion.div variants={fade} className="section-names">
+            <div className="together-text">Together with their families</div>
+            <div style={{ lineHeight: 1.0, marginTop: '0.4rem' }}>
+              <div className="name-groom shine-name">Ameerali</div>
+              <div className="name-ampersand" style={{ fontFamily: 'var(--font-cigra)', fontStyle: 'normal' }}>&amp;</div>
+              <div className="name-bride shine-name">Aslaha Thasni</div>
+            </div>
+          </motion.div>
 
-      {/* ── Section 2: Heart Divider ── */}
-      <motion.div variants={fade} style={{ width: '100%' }}>
-        <HeartDivider />
-      </motion.div>
+          {/* ── Section 2: Heart Divider ── */}
+          <motion.div variants={fade} style={{ width: '100%' }}>
+            <HeartDivider />
+          </motion.div>
 
-      {/* ── Section 2.5: Honor Text ── */}
-      <motion.div variants={fade} className="section-honor">
-        <div className="honor-text">
-          Request the honor of your presence
-        </div>
-      </motion.div>
+          {/* ── Section 2.5: Honor Text ── */}
+          <motion.div variants={fade} className="section-honor">
+            <div className="honor-text">
+              Request the honor of your presence
+            </div>
+          </motion.div>
 
-      {/* ── Section 3: Date + Islamic Date ── */}
-      <motion.div variants={fade} className="section-date">
-        <div className="date-box">
-          <div className="col">
-            <div className="col-day-label">SUNDAY</div>
-            <div className="col-day-sub">2026, May</div>
-          </div>
-          <div className="col-divider" />
-          <div className="col col-number">
-            <div className="col-number-val">17</div>
-          </div>
-          <div className="col-divider" />
-          <div className="col">
-            <div className="col-time" style={{ color: 'var(--green, #6c8a71)' }}>11:30 AM</div>
-          </div>
-        </div>
-        <div style={{ marginTop: '0.45rem' }}>
-          <IslamicDivider />
-        </div>
-      </motion.div>
+          {/* ── Section 3: Date + Islamic Date ── */}
+          <motion.div variants={fade} className="section-date">
+            <div className="date-box">
+              <div className="col">
+                <div className="col-day-label">SUNDAY</div>
+                <div className="col-day-sub">2026, May</div>
+              </div>
+              <div className="col-divider" />
+              <div className="col col-number">
+                <div className="col-number-val">17</div>
+              </div>
+              <div className="col-divider" />
+              <div className="col">
+                <div className="col-time" style={{ color: 'var(--green, #6c8a71)' }}>11:30 AM</div>
+              </div>
+            </div>
+            <div style={{ marginTop: '0.45rem' }}>
+              <IslamicDivider />
+            </div>
+          </motion.div>
 
-      {/* ── Section 4: Venue ── */}
-      <motion.div variants={fade} className="section-venue">
-        <div className="venue-name">Kaipuram Auditorium</div>
-        <div className="venue-address" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', fontFamily: '"Outfit", var(--font-sans), sans-serif' }}>
-          <img src="/images/location.svg" alt="location" style={{ height: '1.2em', width: '1.2em' }} />
-          <span style={{ fontSize: 'calc(1em + 0.5px)', fontWeight: 600 }}>Mayilady Road, Kaipuram, Pattambi</span>
-        </div>
-      </motion.div>
+          {/* ── Section 4: Venue ── */}
+          <motion.div variants={fade} className="section-venue">
+            <div className="venue-name">Kaipuram Auditorium</div>
+            <div className="venue-address" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', fontFamily: '"Outfit", var(--font-sans), sans-serif' }}>
+              <img src="/images/location.svg" alt="location" style={{ height: '1.2em', width: '1.2em' }} />
+              <span style={{ fontSize: 'calc(1em + 0.5px)', fontWeight: 600 }}>Mayilady Road, Kaipuram, Pattambi</span>
+            </div>
+          </motion.div>
 
-      {/* ── Full divider ── */}
-      <motion.div variants={fade} className="full-divider" />
+          {/* ── Full divider ── */}
+          <motion.div variants={fade} className="full-divider" />
 
-      {/* ── Section 5: Countdown ── */}
-      <motion.div variants={fade} className="section-countdown">
-        <div className="countdown-label-row">Countdown to Reception</div>
-        <div className="countdown-grid" style={{ marginTop: '0.5rem' }}>
-          <CountdownCell value={days}    label="Days"  />
-          <CountdownCell value={hours}   label="Hours" />
-          <CountdownCell value={minutes} label="Mins"  />
-          <CountdownCell value={seconds} label="Secs"  />
-        </div>
-      </motion.div>
+          {/* ── Section 5: Countdown ── */}
+          <motion.div variants={fade} className="section-countdown">
+            <div className="countdown-label-row">Countdown to Reception</div>
+            <div className="countdown-grid" style={{ marginTop: '0.5rem' }}>
+              <CountdownCell value={days} label="Days" />
+              <CountdownCell value={hours} label="Hours" />
+              <CountdownCell value={minutes} label="Mins" />
+              <CountdownCell value={seconds} label="Secs" />
+            </div>
+          </motion.div>
 
-      {/* ── Full divider ── */}
-      <motion.div variants={fade} className="full-divider" />
+          {/* ── Full divider ── */}
+          <motion.div variants={fade} className="full-divider" />
 
-      {/* ── Section 6: RSVP ── */}
-      <motion.div variants={fade} className="section-rsvp">
-        <div className="rsvp-label">Will you attend</div>
-        <div className="rsvp-row" style={{ marginTop: '0.5rem' }}>
-          <button
-            className="rsvp-btn rsvp-btn-yes"
-            onClick={() => setAttending(true)}
-          >
-            <img src="/images/tick.png" className="rsvp-icon" alt="yes" />
-            <span className="rsvp-text">Yes, Jnsha Alla! 😍</span>
-          </button>
-          <button
-            className="rsvp-btn rsvp-btn-no"
-            onClick={() => setNotAttending(true)}
-          >
-            <img src="/images/wrong.png" className="rsvp-icon" alt="no" />
-            <span className="rsvp-text">Unfortunately, I can't make it</span>
-          </button>
-        </div>
-      </motion.div>
+          {/* ── Section 6: RSVP ── */}
+          <motion.div variants={fade} className="section-rsvp">
+            <div className="rsvp-label">Will you attend</div>
+            <div className="rsvp-row" style={{ marginTop: '0.5rem' }}>
+              <button
+                className="rsvp-btn rsvp-btn-yes"
+                onClick={() => setAttending(true)}
+              >
+                <img src="/images/tick.png" className="rsvp-icon" alt="yes" />
+                <span className="rsvp-text">Yes, Jnsha Alla! 😍</span>
+              </button>
+              <button
+                className="rsvp-btn rsvp-btn-no"
+                onClick={() => setNotAttending(true)}
+              >
+                <img src="/images/wrong.png" className="rsvp-icon" alt="no" />
+                <span className="rsvp-text">Unfortunately, I can't make it</span>
+              </button>
+            </div>
+          </motion.div>
 
         </motion.div>
       )}
