@@ -375,7 +375,7 @@ function ConfirmedScreen({ onEdit }) {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingLeft: '0.5rem', textAlign: 'center' }}>
           <div style={{ fontFamily: 'var(--font-cinzel)', fontSize: '1rem', fontWeight: 800, color: 'var(--green, #6c8a71)', letterSpacing: '0.05em' }}>KAIPURAM AUDITORIUM</div>
           <div style={{ fontFamily: '"Outfit", var(--font-sans), sans-serif', fontSize: '0.68rem', fontWeight: 600, color: '#333', marginTop: '0.4rem' }}>
-            Mayilady Road, Kaipuram, Pattambi
+            Mayilady Road, Koppam - Valanchery Rd, Kaipuram
           </div>
 
           <a href="https://maps.app.goo.gl/krSYAMbqxmesL1vL7" target="_blank" rel="noopener noreferrer" style={{
@@ -799,7 +799,7 @@ export default function Page() {
             <div className="venue-name">Kaipuram Auditorium</div>
             <div className="venue-address" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', fontFamily: '"Outfit", var(--font-sans), sans-serif' }}>
               <img src="/images/location.svg" alt="location" style={{ height: '1.2em', width: '1.2em' }} />
-              <span style={{ fontSize: 'calc(1em + 0.5px)', fontWeight: 600 }}>Mayilady Road, Kaipuram, Pattambi</span>
+              <span style={{ fontSize: 'calc(1em + 0.5px)', fontWeight: 600 }}>Mayilady Road, Koppam - Valanchery Rd, Kaipuram</span>
             </div>
           </motion.div>
 
