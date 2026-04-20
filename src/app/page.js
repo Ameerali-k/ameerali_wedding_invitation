@@ -42,17 +42,20 @@ function IslamicDivider() {
   const [hijriDate, setHijriDate] = useState('1 Dhul Hijjah 1447');
 
   useEffect(() => {
-    try {
-      const weddingDate = new Date('2026-05-17T00:00:00');
-      const formatter = new Intl.DateTimeFormat('en-u-ca-islamic-uma-nu-latn', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-      setHijriDate(formatter.format(weddingDate));
-    } catch (e) {
-      console.error('Hijri calculation error', e);
-    }
+    const fetchHijri = async () => {
+      try {
+        const response = await fetch('https://api.aladhan.com/v1/gToH/17-05-2026');
+        const result = await response.json();
+        if (result && result.data && result.data.hijri) {
+          const h = result.data.hijri;
+          // Format: "1 Dhul Hijjah 1447"
+          setHijriDate(`${h.day} ${h.month.en} ${h.year}`);
+        }
+      } catch (e) {
+        console.error('Error fetching Hijri date:', e);
+      }
+    };
+    fetchHijri();
   }, []);
 
   return (
