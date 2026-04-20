@@ -702,7 +702,7 @@ body {
 .card-flower {
   position: absolute;
   width: 120px;
-  opacity: 0.2;
+  opacity: 0.45;
   pointer-events: none;
   z-index: 0;
 }
