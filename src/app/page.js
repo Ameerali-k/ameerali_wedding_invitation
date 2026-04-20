@@ -840,6 +840,9 @@ export default function Page() {
               </button>
             </div>
           </motion.div>
+          <motion.div variants={fade} style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+            <img src="/images/flower.svg" style={{ width: '80px', opacity: 0.45, transform: 'rotate(180deg)' }} alt="" />
+          </motion.div>
 
         </motion.div>
       )}
