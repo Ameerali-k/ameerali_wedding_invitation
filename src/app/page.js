@@ -785,6 +785,7 @@ export default function Page() {
               </div>
               <div className="col-divider" />
               <div className="col">
+                <div className="col-day-sub" style={{ textTransform: 'uppercase', marginBottom: '2px', letterSpacing: '0.05em' }}>RECEPTION AT</div>
                 <div className="col-time" style={{ color: 'var(--green, #6c8a71)' }}>11:30 AM</div>
               </div>
             </div>
