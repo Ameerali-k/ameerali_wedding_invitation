@@ -39,10 +39,26 @@ function HeartDivider() {
 
 /* ─── Islamic Date Divider ───────────────────────────────────── */
 function IslamicDivider() {
+  const [hijriDate, setHijriDate] = useState('1 Dhul Hijjah 1447');
+
+  useEffect(() => {
+    try {
+      const weddingDate = new Date('2026-05-17T00:00:00');
+      const formatter = new Intl.DateTimeFormat('en-u-ca-islamic-uma-nu-latn', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+      setHijriDate(formatter.format(weddingDate));
+    } catch (e) {
+      console.error('Hijri calculation error', e);
+    }
+  }, []);
+
   return (
     <div className="islamic-divider">
       <img src="/images/smallline.svg" className="idiv-line" alt="" />
-      <span className="idiv-text">1 Dhul Hijjah 1447</span>
+      <span className="idiv-text">{hijriDate}</span>
       <img src="/images/smallline.svg" className="idiv-line" alt="" style={{ transform: 'scaleX(-1)' }} />
     </div>
   );
