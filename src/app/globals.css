@@ -388,7 +388,7 @@ body {
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 6px;
   width: 100%;
 }
 
@@ -430,7 +430,7 @@ body {
   }
 
   .countdown-grid {
-    gap: 10px;
+    gap: 8px;
   }
 
   .countdown-cell {
