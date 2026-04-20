@@ -746,6 +746,9 @@ export default function Page() {
       <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
       {!initLoading && (
         <motion.div className="card" variants={container} initial="hidden" animate="show">
+          {/* Internal Flowers for Card */}
+          <img src="/images/flower.svg" alt="" className="card-flower card-flower-tl" />
+          <img src="/images/flower.svg" alt="" className="card-flower card-flower-br" />
 
           {/* ── Section 1: Header + Names ── */}
           <motion.div variants={fade} className="section-names">

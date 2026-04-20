@@ -704,3 +704,30 @@ body {
     opacity: 0.5;
   }
 }
+
+/* ─── Internal Card Flowers ────────────────────────────────── */
+.card-flower {
+  position: absolute;
+  width: 140px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-flower-tl {
+  top: -30px;
+  left: -30px;
+  transform: rotate(0deg);
+}
+
+.card-flower-br {
+  bottom: -30px;
+  right: -30px;
+  transform: rotate(180deg);
+}
+
+@media (min-width: 600px) {
+  .card-flower {
+    width: 200px;
+  }
+}
