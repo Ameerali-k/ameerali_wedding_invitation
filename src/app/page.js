@@ -28,6 +28,62 @@ function useCountdown(targetDateStr) {
   return timeLeft;
 }
 
+/* ─── Music Control ─────────────────────────────────────────── */
+function MusicControl({ isMuted, onToggle }) {
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onToggle();
+      }}
+      className="music-control-btn"
+      title={isMuted ? "Unmute Music" : "Mute Music"}
+    >
+      {isMuted ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+        </svg>
+      )}
+      <style>{`
+        .music-control-btn {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          z-index: 100;
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(8px);
+          border: 1px solid rgba(74, 124, 90, 0.2);
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #4a7c5a;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          padding: 8px;
+        }
+        .music-control-btn:hover {
+          background: #fff;
+          transform: scale(1.1);
+          color: #6b9970;
+          box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .music-control-btn svg {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
+    </button>
+  );
+}
+
 /* ─── Heart Divider ──────────────────────────────────────────── */
 function HeartDivider() {
   return (
@@ -654,6 +710,7 @@ export default function Page() {
   const [notAttending, setNotAttending] = useState(false);
   const [notAttendingConfirmed, setNotAttendingConfirmed] = useState(false);
   const [initLoading, setInitLoading] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -683,10 +740,13 @@ export default function Page() {
     }
   };
 
+  const audioTag = <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop muted={isMuted} />;
+
   if (confirmed) {
     return (
       <>
-        <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
+        {audioTag}
+        {!initLoading && <MusicControl isMuted={isMuted} onToggle={() => setIsMuted(!isMuted)} />}
         <ConfirmedScreen onEdit={() => { setConfirmed(false); setAttending(false); }} />
       </>
     );
@@ -720,7 +780,8 @@ export default function Page() {
   if (attending) {
     return (
       <>
-        <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
+        {audioTag}
+        {!initLoading && <MusicControl isMuted={isMuted} onToggle={() => setIsMuted(!isMuted)} />}
         <SuccessScreen
           onBack={() => setAttending(false)}
           onSubmit={async (count) => {
@@ -743,7 +804,7 @@ export default function Page() {
         {initLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
 
-      <audio id="wedding-audio" src="/wedding_nasheeed.mp3" loop />
+      {audioTag}
       {!initLoading && (
         <motion.div className="card" variants={container} initial="hidden" animate="show">
           {/* Internal Flowers for Card */}
