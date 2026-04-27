@@ -100,7 +100,7 @@ function IslamicDivider() {
   useEffect(() => {
     const fetchHijri = async () => {
       try {
-        const response = await fetch('https://api.aladhan.com/v1/gToH/17-05-2026');
+        const response = await fetch('https://api.aladhan.com/v1/gToH/18-05-2026');
         const result = await response.json();
         if (result && result.data && result.data.hijri) {
           const h = result.data.hijri;
@@ -333,7 +333,7 @@ function SuccessScreen({ onBack, onSubmit }) {
 
 /* ─── Confirmed Screen ─────────────────────────────────────────── */
 function ConfirmedScreen({ onEdit }) {
-  const { days, hours, minutes, seconds } = useCountdown('2026-05-17T11:30:00');
+  const { days, hours, minutes, seconds } = useCountdown('2026-05-18T12:00:00');
 
   useEffect(() => {
     // Play audio from the global element
@@ -421,10 +421,10 @@ function ConfirmedScreen({ onEdit }) {
 
         {/* Left Col - Date */}
         <div style={{ flex: '0 0 110px', display: 'flex', flexDirection: 'column', alignItems: 'center', borderRight: '1.5px solid #d5d5cc', paddingRight: '0.5rem' }}>
-          <div style={{ fontFamily: 'var(--font-cigra)', fontSize: '2.8rem', color: '#111', lineHeight: 1 }}>17</div>
+          <div style={{ fontFamily: 'var(--font-cigra)', fontSize: '2.8rem', color: '#111', lineHeight: 1 }}>18</div>
           <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.75rem', fontWeight: 600, color: '#9fa3a9', letterSpacing: '0.2em', marginTop: '4px' }}>MAY</div>
           <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.45rem', fontWeight: 800, color: '#333', letterSpacing: '0.1em', marginTop: '0.8rem', textAlign: 'center' }}>RECEPTION TIME</div>
-          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', fontWeight: 800, color: 'var(--green, #6c8a71)', marginTop: '2px' }}>11:30 AM</div>
+          <div style={{ fontFamily: 'var(--font-sans)', fontSize: '0.8rem', fontWeight: 800, color: 'var(--green, #6c8a71)', marginTop: '2px' }}>12:00 PM</div>
         </div>
 
         {/* Right Col - Venue */}
@@ -719,7 +719,7 @@ export default function Page() {
     return () => clearTimeout(timer);
   }, []);
 
-  const { days, hours, minutes, seconds } = useCountdown('2026-05-17T11:30:00');
+  const { days, hours, minutes, seconds } = useCountdown('2026-05-18T12:00:00');
 
   const fade = {
     hidden: { opacity: 0, y: 30 },
@@ -837,17 +837,17 @@ export default function Page() {
           <motion.div variants={fade} className="section-date">
             <div className="date-box">
               <div className="col">
-                <div className="col-day-label">SUNDAY</div>
+                <div className="col-day-label">MONDAY</div>
                 <div className="col-day-sub">2026, May</div>
               </div>
               <div className="col-divider" />
               <div className="col col-number">
-                <div className="col-number-val">17</div>
+                <div className="col-number-val">18</div>
               </div>
               <div className="col-divider" />
               <div className="col">
                 <div className="col-day-sub" style={{ textTransform: 'uppercase', marginBottom: '2px', letterSpacing: '0.05em' }}>RECEPTION AT</div>
-                <div className="col-time" style={{ color: 'var(--green, #6c8a71)' }}>11:30 AM</div>
+                <div className="col-time" style={{ color: 'var(--green, #6c8a71)' }}>12:00 PM</div>
               </div>
             </div>
             <div style={{ marginTop: '0.45rem' }}>
